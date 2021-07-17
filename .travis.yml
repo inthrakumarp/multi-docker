@@ -1,4 +1,5 @@
 sudo: required
+language: generic
 services:
 	- docker
 
@@ -9,10 +10,10 @@ script:
 	- docker run -e CI=true inthrakumarp/react-test npm run test -- --coverage
 
 after_success:
-  - docker built -t inthrakumarp/multi-client ./client
-  - docker built -t inthrakumarp/multi-nginx ./nginx
-  - docker built -t inthrakumarp/multi-server ./server
-  - docker built -t inthrakumarp/multi-worker ./worker
+  - docker build -t inthrakumarp/multi-client ./client
+  - docker build -t inthrakumarp/multi-nginx ./nginx
+  - docker build -t inthrakumarp/multi-server ./server
+  - docker build -t inthrakumarp/multi-worker ./worker
   # log into docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take the images and push to docker hub
