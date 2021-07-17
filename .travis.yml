@@ -9,4 +9,8 @@ before_install:
 script:
   - docker run -e CI=true inthrakumarp/docker-react npm run test
 
+after_success:
+  - docker build -t inthrakumarp/multi-client ./client
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
 
