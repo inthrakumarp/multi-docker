@@ -9,16 +9,4 @@ before_install:
 script:
 	- docker run -e CI=true inthrakumarp/react-test npm run test -- --coverage
 
-after_success:
-  - docker build -t inthrakumarp/multi-client ./client
-  - docker build -t inthrakumarp/multi-nginx ./nginx
-  - docker build -t inthrakumarp/multi-server ./server
-  - docker build -t inthrakumarp/multi-worker ./worker
-  # log into docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take the images and push to docker hub
-  - docker push inthrakumarp/multi-client
-  - docker push inthrakumarp/multi-nginx
-  - docker push inthrakumarp/multi-server
-  - docker push inthrakumarp/multi-worker
 
