@@ -1,12 +1,12 @@
 sudo: required
 language: generic
 services:
-	- docker
+  - docker
 
 before_install:
-	- docker build -t inthrakumarp/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t inthrakumarp/docker-react -f ./client/Dockerfile.dev ./client
 
 script:
-	- docker run -e CI=true inthrakumarp/react-test npm run test
+  - docker run -e CI=true inthrakumarp/docker-react npm run test
 
 
