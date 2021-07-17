@@ -11,6 +11,13 @@ script:
 
 after_success:
   - docker build -t inthrakumarp/multi-client ./client
+  - docker build -t inthrakumarp/multi-nginx ./nginx
+  - docker build -t inthrakumarp/multi-server ./server
+  - docker build -t inthrakumarp/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push inthrakumarp/multi-client
+  - docker push inthrakumarp/multi-nginx
+  - docker push inthrakumarp/multi-server
+  - docker push inthrakumarp/multi-worker
 
 
